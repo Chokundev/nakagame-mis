@@ -1,40 +1,27 @@
-## [1.3.0] 2023-05-06
 
-🐛 Bugs solved:
+## [2.2.0] 2024-02-06
 
-- Sidebar content design bug solved
+### Next 14
 
+## [2.1.0] 2023-11-10
 
-## [1.2.1] 2022-11-01
+### Bug fix - Build error due to Types
 
-🚀 Feature:
--Added TimelineRow
+- Updated types
+- Updated charts 
+## [2.0.0] 2023-09-13 
 
-## [1.2.0] 2022-08-23
+### Big update - NextJS 13 Update
 
-🚀 HyperTheme Editor
+- Layouts update 
+- Updated routing
+- Updated image component
+- Updated link component
 
-- With the help of the guys from Hyperting, we added HyperTheme Editor. You can check the docs [here](https://www.hyperthe.me/documentation/getting-started/community)!
-## [1.1.0] 2022-06-08
-
-🐛 Bugs solved:
-
-- Calendar card - Card border bug on dark mode
-- Development Table - Missing content bug
-- Solved the warnings regarding stylis-plugin-rtl
-- Fixed console warnings
-
-## [1.0.1] 2022-04-25
-
-### Multiple design bugs on mobile solved
-
-- Default - "Daily traffic" card - text align problem on mobile - solved.
-- Navbar - Icons - align problem with all icons on mobile - solved.
-- Profile - "Your storage" card - "More" icon align problem on mobile - solved.
-- Profile - "Complete your profile" card - text align problem on mobile - solved.
-
-## [1.0.0] 2022-04-18
+## [1.0.1] 2022-03-22
+### Bug Fixing 
+Auth layout fixed
+## [1.0.0] 2022-10-17
 
 ### Original Release
-
-- Added Chakra UI as base framework
+- Added Typescript & NextJS
