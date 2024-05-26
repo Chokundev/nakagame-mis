@@ -46,7 +46,7 @@ const routes = [
     name: "บันทึกผลการแข่งขันกีฬา",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
-    path: "/data-tables",
+    path: "/competition-result",
     component: DataTables,
   },
   {
