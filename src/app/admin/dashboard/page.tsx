@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  SimpleGrid,
-  useColorModeValue,
-  Text,
-  Link,
-  Divider,
-} from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+// import {
+//   Box,
+//   SimpleGrid,
+//   useColorModeValue,
+//   Text,
+//   Link,
+//   Divider,
+// } from '@chakra-ui/react';
+// import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const Dashboard: React.FC = () => {
   // State to manage client-side rendering
