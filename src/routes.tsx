@@ -5,7 +5,13 @@ import {
   MdHome,
   MdLock,
   MdOutlineShoppingCart,
+  MdPrint,
+  MdEditDocument,
 } from 'react-icons/md';
+
+import {
+  IoMdPricetag ,
+} from 'react-icons/io';
 
 // Admin Imports
 // import MainDashboard from './pages/admin/default';
@@ -20,18 +26,18 @@ import { IRoute } from 'types/navigation';
 
 const routes: IRoute[] = [
   {
-    name: 'Main Dashboard',
+    name: 'หน้าหลัก',
     layout: '/admin',
-    path: '/default',
+    path: '/home',
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: 'NFT Marketplace',
+    name: 'แดชบอร์ดภาพรวม',
     layout: '/admin',
-    path: '/nft-marketplace',
+    path: '/dashboard',
     icon: (
       <Icon
-        as={MdOutlineShoppingCart}
+        as={MdBarChart}
         width="20px"
         height="20px"
         color="inherit"
@@ -40,29 +46,47 @@ const routes: IRoute[] = [
     secondary: true,
   },
   {
-    name: 'Data Tables',
+    name: 'บันทึกผลการแข่งขันกีฬา',
     layout: '/admin',
-    icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={IoMdPricetag } width="20px" height="20px" color="inherit" />,
     path: '/data-tables',
   },
   {
-    name: 'Profile',
+    name: 'บันทึกสรุปผลการแข่งขันกีฬา',
     layout: '/admin',
     path: '/profile',
-    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={IoMdPricetag} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: 'Sign In',
-    layout: '/auth',
-    path: '/sign-in',
-    icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
+    name: 'บันทึกผลการแข่งขันกรีฑา',
+    layout: '/admin',
+    path: '/profile',
+    icon: <Icon as={IoMdPricetag} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: 'RTL Admin',
-    layout: '/rtl',
-    path: '/rtl-default',
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
+    name: 'บันทึกผลคะแนนการประกวด',
+    layout: '/admin',
+    path: '/profile',
+    icon: <Icon as={IoMdPricetag} width="20px" height="20px" color="inherit" />,
   },
+  {
+    name: 'บันทึกแก้ไขประเภทกีฬา',
+    layout: '/admin',
+    path: '/profile',
+    icon: <Icon as={MdEditDocument} width="20px" height="20px" color="inherit" />,
+  },
+  {
+    name: 'พิมพ์รายงานผลการแข่งขัน',
+    layout: '/admin',
+    path: '/profile',
+    icon: <Icon as={MdPrint} width="20px" height="20px" color="inherit" />,
+  },
+  // {
+  //   name: 'Sign In',
+  //   layout: '/auth',
+  //   path: '/sign-in',
+  //   icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
+  // },
 ];
 
 export default routes;

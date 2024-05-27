@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 // Custom Components
 import { ItemContent } from 'components/menu/ItemContent';
-import { SearchBar } from 'components/navbar/searchBar/SearchBar';
+// import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 import { SidebarResponsive } from 'components/sidebar/Sidebar';
 // Assets
 import navImage from '/public/img/layout/Navbar.png';
@@ -59,16 +59,7 @@ export default function HeaderLinks(props: {
       borderRadius="30px"
       boxShadow={shadow}
     >
-      <SearchBar
-        mb={() => {
-          if (secondary) {
-            return { base: '10px', md: 'unset' };
-          }
-          return 'unset';
-        }}
-        me="10px"
-        borderRadius="30px"
-      />
+      
       <Flex
         bg={ethBg}
         display={secondary ? 'flex' : 'none'}
@@ -128,7 +119,7 @@ export default function HeaderLinks(props: {
         >
           <Flex w="100%" mb="20px">
             <Text fontSize="md" fontWeight="600" color={textColor}>
-              Notifications
+              การแจ้งเตือน
             </Text>
             <Text
               fontSize="sm"
@@ -137,7 +128,7 @@ export default function HeaderLinks(props: {
               ms="auto"
               cursor="pointer"
             >
-              Mark all read
+              
             </Text>
           </Flex>
           <Flex flexDirection="column">
@@ -189,7 +180,7 @@ export default function HeaderLinks(props: {
           <Flex flexDirection="column">
             <Link w="100%" href="https://horizon-ui.com/pro">
               <Button w="100%" h="44px" mb="10px" variant="brand">
-                Buy Horizon UI PRO
+                วิดีโอสาธิตการใช้งานระบบ
               </Button>
             </Link>
             <Link
@@ -204,28 +195,20 @@ export default function HeaderLinks(props: {
                 bg="transparent"
                 borderColor={borderButton}
               >
-                See Documentation
+                อ่านคู่มือการใช้งานระบบ
               </Button>
             </Link>
             <Link
               w="100%"
               href="https://github.com/horizon-ui/horizon-ui-chakra-nextjs"
             >
-              <Button
-                w="100%"
-                h="44px"
-                variant="no-hover"
-                color={textColor}
-                bg="transparent"
-              >
-                Try Horizon Free
-              </Button>
+             
             </Link>
           </Flex>
         </MenuList>
       </Menu>
 
-      <Button
+      {/* <Button
         variant="no-hover"
         bg="transparent"
         p="0px"
@@ -242,7 +225,7 @@ export default function HeaderLinks(props: {
           color={navbarIcon}
           as={colorMode === 'light' ? IoMdMoon : IoMdSunny}
         />
-      </Button>
+      </Button> */}
       <Menu>
         <MenuButton p="0px" style={{ position: 'relative' }}>
           <Box
@@ -279,26 +262,26 @@ export default function HeaderLinks(props: {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, Adela
+              👋&nbsp; สวัสดี , ผู้ดูแลระบบ
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">
-            <MenuItem
+            {/* <MenuItem
               _hover={{ bg: 'none' }}
               _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
             >
               <Text fontSize="sm">Profile Settings</Text>
-            </MenuItem>
-            <MenuItem
+            </MenuItem> */}
+            {/* <MenuItem
               _hover={{ bg: 'none' }}
               _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
             >
               <Text fontSize="sm">Newsletter Settings</Text>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               _hover={{ bg: 'none' }}
               _focus={{ bg: 'none' }}
@@ -306,7 +289,7 @@ export default function HeaderLinks(props: {
               borderRadius="8px"
               px="14px"
             >
-              <Text fontSize="sm">Log out</Text>
+              <Text fontSize="sm">ออกจากระบบ</Text>
             </MenuItem>
           </Flex>
         </MenuList>
