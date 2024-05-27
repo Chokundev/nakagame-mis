@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <iframe src="https://script.google.com/macros/s/AKfycbxttpW3JTCewFnpdYtooJ_glMJlxGeYQ5X7TP9M1LBVHQJma7vUqhhMiAagqAHr-E_uSw/exec" width="100%" height="2000px" frameBorder="0" class="bg-light"></iframe>
+    <iframe src="https://script.google.com/macros/s/AKfycbxttpW3JTCewFnpdYtooJ_glMJlxGeYQ5X7TP9M1LBVHQJma7vUqhhMiAagqAHr-E_uSw/exec" width="100%" height="2000px" frameBorder="0"></iframe>
   );
 }
 
