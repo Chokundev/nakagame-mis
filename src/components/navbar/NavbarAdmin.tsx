@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from 'react'
 import AdminNavbarLinks from 'components/navbar/NavbarLinksAdmin'
 import { isWindowAvailable } from 'utils/navigation'
+import { useLocation } from 'react-router-dom'; // เพิ่มการ import useLocation จาก react-router-dom
 
 export default function AdminNavbar (props: {
   secondary: boolean
@@ -23,12 +24,11 @@ export default function AdminNavbar (props: {
   onOpen: (...args: any[]) => any
 }) {
   const [scrolled, setScrolled] = useState(false)
+  const location = useLocation(); // เรียกใช้ useLocation เพื่อใช้ในการดึงค่า path ปัจจุบัน
 
   useEffect(() => {
     if (isWindowAvailable()) {
-      // You now have access to `window`
       window.addEventListener('scroll', changeNavbar)
-
       return () => {
         window.removeEventListener('scroll', changeNavbar)
       }
@@ -36,8 +36,6 @@ export default function AdminNavbar (props: {
   })
 
   const { secondary, message, brandText } = props
-
-  // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
   let mainText = useColorModeValue('navy.700', 'white')
   let secondaryText = useColorModeValue('gray.700', 'white')
   let navbarPosition = 'fixed' as const
@@ -125,8 +123,13 @@ export default function AdminNavbar (props: {
                 {brandText}
               </BreadcrumbLink>
             </BreadcrumbItem>
+
+            <BreadcrumbItem color={secondaryText} fontSize='sm'> {/* เพิ่ม BreadcrumbItem สำหรับเพิ่ม path ปัจจุบัน */}
+              <BreadcrumbLink href='#' color={secondaryText}>
+                {location.pathname}
+              </BreadcrumbLink>
+            </BreadcrumbItem>
           </Breadcrumb>
-          {/* Here we create navbar brand, based on route name */}
           <Link
             color={mainText}
             href='#'
