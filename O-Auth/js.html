@@ -1,0 +1,64 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script data-cfasync="false" src="https://sb-admin-pro.startbootstrap.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://sb-admin-pro.startbootstrap.com/js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
+<script src="https://assets.startbootstrap.com/js/sb-customizer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.8/countUp.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      if (window.innerWidth < 769) {
+          document.querySelector('.desktop-content').style.display = 'none';
+          document.querySelector('.mobile-message').style.display = 'block';
+      } else {
+          document.querySelector('.desktop-content').style.display = 'block';
+          document.querySelector('.mobile-message').style.display = 'none';
+      }
+  });
+
+
+
+
+function openPage(pageName,elmnt) {
+  var i, content;
+  content = $(".content");
+  for (i = 0; i < content.length; i++) {
+    content[i].style.display = "none";
+  }
+    $("#" + pageName).css("display", "block");
+    // $('#sidebarToggle').click()
+    showgetdata()
+    getpersonal()
+    gettitle1()
+    gettitle2()
+}
+    $("#homepage").click(); //เมื่อเปิดคลิกหน้าหลัก
+    $("#homepage").hide(); //หน้าหลัก
+    $("#page_user1").click();
+
+
+function reLoad() {
+       google.script.run.withSuccessHandler(function(url){
+        window.open(url,'_top');
+      })
+      .getURL();
+    } 
+
+function showLoad(){
+$.LoadingOverlaySetup({
+    background      : "rgba(0, 0, 0, 0.5)",
+    image           : "https://img5.pic.in.th/file/secure-sv1/book.png",
+    imageAnimation  : "1.5s fadein",
+    imageColor      : "#ffcc00"
+});
+// Show full page LoadingOverlay
+$.LoadingOverlay("show");
+
+// Hide it after 3 seconds
+setTimeout(function(){
+    $.LoadingOverlay("hide");
+}, 3000);
+}
+</script>

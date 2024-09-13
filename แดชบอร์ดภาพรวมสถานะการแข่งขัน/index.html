@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base target="_top">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://nakagame-webadmin-cdn.pages.dev/css/sb-admin-2.min.css" rel="stylesheet">
+      <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
+
+    </head>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .blink {
+        animation: blink-animation 1s steps(5, start) infinite;
+        -webkit-animation: blink-animation 1s steps(5, start) infinite;
+    }
+
+    @keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    @-webkit-keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+</style>
+
+    <body class="bg-light">
+      <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-dark font-weight-bold">[เมนู] : 📊 แดชบอร์ดภาพรวมสำหรับผู้ดูแลระบบ</h1>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <br>
+                            <h5 class="text-primary"><strong>📄 : ภาพรวมสถานะ</strong></h5> 
+                            <span class="blink font-weight-bold" id="stat_1">(🔴 : ยังบันทึกผลการแข่งขันไม่ครบ)</span>
+                            <hr>
+                            <div class="row">
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        ผลการแข่งขันกีฬา (ทุกประเภท)
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="stat_s1">0%</div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="progress progress-sm mr-2">
+                                                                <div class="progress-bar bg-info" role="progressbar"
+                                                                    style="width: 0%" aria-valuenow="50"
+                                                                    aria-valuemin="0" aria-valuemax="100" id="stat_b1">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        สรุปผลการแข่งขันกีฬา (ทุกประเภท)
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="stat_s2">0%</div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="progress progress-sm mr-2">
+                                                                <div class="progress-bar bg-info" role="progressbar"
+                                                                    style="width: 0%" aria-valuenow="50"
+                                                                    aria-valuemin="0" aria-valuemax="100" id="stat_b2">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        ผลการแข่งขันกรีฑา
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="stat_s3">0%</div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="progress progress-sm mr-2">
+                                                                <div class="progress-bar bg-info" role="progressbar"
+                                                                    style="width: 0%" aria-valuenow="50"
+                                                                    aria-valuemin="0" aria-valuemax="100" id="stat_b3">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        ผลคะแนนการประกวด (ทุกประเภท)
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="stat_s4">0%</div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="progress progress-sm mr-2">
+                                                                <div class="progress-bar bg-info" role="progressbar"
+                                                                    style="width: 0%" aria-valuenow="50"
+                                                                    aria-valuemin="0" aria-valuemax="100" id="stat_b4">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <br>
+                            <h5 class="text-primary"><strong>🖨️ : สถานะการพิมพ์รายงานผลการแข่งขัน</strong></h5> <span
+                                class="blink font-weight-bold" id="stat_2">(🔴 : ยังไม่พร้อมพิมพ์ทุกรายงาน)</span>
+                            <hr>
+
+                            <div class="row">
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        [01] : กีฬารวมและวิ่งกรีฑา</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2" id="print_1">✅ :
+                                                        พร้อมพิมพ์รายงาน</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-print fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        [02] : ประกวดกองเชียร์และผู้นำเชียร์</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2" id="print_2">✅ :
+                                                        พร้อมพิมพ์รายงาน</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-print fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        [03] : ประกวดขบวนพาเหรด</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2"  id="print_3">✅ :
+                                                        พร้อมพิมพ์รายงาน</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-print fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-6 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        [04] : ประกวดกายบริหาร</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2"  id="print_4">✅ :
+                                                        พร้อมพิมพ์รายงาน</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-print fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-12 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        [05] : ทุกประเภทการประกวด</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2" id="print_5">❎ :
+                                                        ไม่พร้อมพิมพ์รายงาน</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-print fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <h5 class="text-primary"><strong>📄 : รายละเอียดสถานะแยกตามประเภทการแข่งขัน</strong></h5>
+                    <hr>
+
+
+                    <div class="card shadow mb-4 col-xl-12">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">สถานะการแข่งขันตามประเภทกีฬา <span
+                                    class="blink" id="stat_3">(🔴 : ยังบันทึกผลการแข่งขันไม่ครบ)</span></h6>
+                        </div>
+                        <div class="row">
+                            <div class="card-body col-xl-6">
+                                <h4 class="small font-weight-bold">[01] : <span id="sport_1"></span>
+                                    <span class="float-right" id="sport_s1">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b1"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[02] : <span id="sport_2"></span>
+                                    <span class="float-right" id="sport_s2">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b2"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[03] : <span id="sport_3"></span>
+                                    <span class="float-right" id="sport_s3">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b3"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[04] : <span id="sport_4"></span>
+                                    <span class="float-right" id="sport_s4">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b4"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[05] : <span id="sport_5"></span>
+                                    <span class="float-right" id="sport_s5">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b5"></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-body col-xl-6">
+                                <h4 class="small font-weight-bold">[06] : <span id="sport_6"></span>
+                                    <span class="float-right" id="sport_s6">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b6"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[07] : <span id="sport_7"></span>
+                                    <span class="float-right" id="sport_s7">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b7"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[08] : <span id="sport_8"></span>
+                                    <span class="float-right" id="sport_s8">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b8"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[09] : <span id="sport_9"></span>
+                                    <span class="float-right" id="sport_s9">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b9"></div>
+                                </div>
+
+                                <h4 class="small font-weight-bold">[10] : <span id="sport_10"></span>
+                                    <span class="float-right" id="sport_s10">0%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sport_b10"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- สถานะผลการแข่งขันกรีฑา -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">สถานะผลการแข่งขันกรีฑา <span
+                                            class="blink" id="stat_4">(🔴 : ยังบันทึกผลการแข่งขันไม่ครบ)</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">ชั้นมัธยมศึกษาปีที่ 1
+                                        <span class="float-right" id="run_s1">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="run_b1"></div>
+                                    </div>
+                                    
+                                    <h4 class="small font-weight-bold">ชั้นมัธยมศึกษาปีที่ 2
+                                        <span class="float-right" id="run_s2">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="run_b2"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">ชั้นมัธยมศึกษาปีที่ 3
+                                        <span class="float-right" id="run_s3">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="run_b3"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">ชั้นมัธยมศึกษาปีที่ 4
+                                        <span class="float-right" id="run_s4">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="run_b4"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">ชั้นมัธยมศึกษาปีที่ 5
+                                        <span class="float-right" id="run_s5">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="run_b5"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">ชั้นมัธยมศึกษาปีที่ 6
+                                        <span class="float-right" id="run_s6">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="run_b6"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- สถานะผลคะแนนการประกวด -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">สถานะผลคะแนนการประกวด <span
+                                            class="blink">(🔴 : ยังบันทึกผลการแข่งขันไม่ครบ)</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">[01] : กีฬารวมและวิ่งกรีฑา 
+                                        <span class="float-right" id="compet_s1">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="compet_b1"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">[02] : ประกวดกองเชียร์และผู้นำเชียร์
+                                        <span class="float-right" id="compet_s2">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="compet_b2"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">[03] : ประกวดขบวนพาเหรด
+                                        <span class="float-right" id="compet_s3">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="compet_b3"></div>
+                                    </div>
+
+                                    <h4 class="small font-weight-bold">[04] : ประกวดกายบริหาร
+                                        <span class="float-right" id="compet_s4">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="compet_b4"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- /.container-fluid -->
+
+                </div>
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded',function(){
+
+    setInterval(function(){
+
+      let stat_1 = document.getElementById('stat_1');
+      let stat_2 = document.getElementById('stat_2');
+      let stat_3 = document.getElementById('stat_3');
+      let stat_4 = document.getElementById('stat_4');
+
+      let stat_s1 = document.getElementById('stat_s1');
+      let stat_s2 = document.getElementById('stat_s2');
+      let stat_s3 = document.getElementById('stat_s3');
+      let stat_s4 = document.getElementById('stat_s4');
+
+      let stat_b1 = document.getElementById('stat_b1');
+      let stat_b2 = document.getElementById('stat_b2');
+      let stat_b3 = document.getElementById('stat_b3');
+      let stat_b4 = document.getElementById('stat_b4');
+
+      let print_1 = document.getElementById('print_1');
+      let print_2 = document.getElementById('print_2');
+      let print_3 = document.getElementById('print_3');
+      let print_4 = document.getElementById('print_4');
+      let print_5 = document.getElementById('print_5');
+
+      let sport_1 = document.getElementById('sport_1');
+      let sport_2 = document.getElementById('sport_2');
+      let sport_3 = document.getElementById('sport_3');
+      let sport_4 = document.getElementById('sport_4');
+      let sport_5 = document.getElementById('sport_5');
+      let sport_6 = document.getElementById('sport_6');
+      let sport_7 = document.getElementById('sport_7');
+      let sport_8 = document.getElementById('sport_8');
+      let sport_9 = document.getElementById('sport_9');
+      let sport_10 = document.getElementById('sport_10');
+
+      let sport_s1 = document.getElementById('sport_s1');
+      let sport_s2 = document.getElementById('sport_s2');
+      let sport_s3 = document.getElementById('sport_s3');
+      let sport_s4 = document.getElementById('sport_s4');
+      let sport_s5 = document.getElementById('sport_s5');
+      let sport_s6 = document.getElementById('sport_s6');
+      let sport_s7 = document.getElementById('sport_s7');
+      let sport_s8 = document.getElementById('sport_s8');
+      let sport_s9 = document.getElementById('sport_s9');
+      let sport_s10 = document.getElementById('sport_s10');
+
+      let sport_b1 = document.getElementById('sport_b1');
+      let sport_b2 = document.getElementById('sport_b2');
+      let sport_b3 = document.getElementById('sport_b3');
+      let sport_b4 = document.getElementById('sport_b4');
+      let sport_b5 = document.getElementById('sport_b5');
+      let sport_b6 = document.getElementById('sport_b6');
+      let sport_b7 = document.getElementById('sport_b7');
+      let sport_b8 = document.getElementById('sport_b8');
+      let sport_b9 = document.getElementById('sport_b9');
+      let sport_b10 = document.getElementById('sport_b10');
+
+      let run_s1 = document.getElementById('run_s1');
+      let run_s2 = document.getElementById('run_s2');
+      let run_s3 = document.getElementById('run_s3');
+      let run_s4 = document.getElementById('run_s4');
+      let run_s5 = document.getElementById('run_s5');
+      let run_s6 = document.getElementById('run_s6');
+
+      let run_b1 = document.getElementById('run_b1');
+      let run_b2 = document.getElementById('run_b2');
+      let run_b3 = document.getElementById('run_b3');
+      let run_b4 = document.getElementById('run_b4');
+      let run_b5 = document.getElementById('run_b5');
+      let run_b6 = document.getElementById('run_b6');
+
+      let compet_s1 = document.getElementById('compet_s1');
+      let compet_s2 = document.getElementById('compet_s2');
+      let compet_s3 = document.getElementById('compet_s3');
+      let compet_s4 = document.getElementById('compet_s4');
+
+      let compet_b1 = document.getElementById('compet_b1');
+      let compet_b2 = document.getElementById('compet_b2');
+      let compet_b3 = document.getElementById('compet_b3');
+      let compet_b4 = document.getElementById('compet_b4');
+
+
+      google.script.run
+      .withSuccessHandler(data => {
+
+        stat_1.innerHTML = data[0];
+        stat_2.innerHTML = data[1];
+        stat_3.innerHTML = data[2];
+        stat_4.innerHTML = data[3];
+
+        stat_s1.innerHTML = data[4];
+        stat_s2.innerHTML = data[5];
+        stat_s3.innerHTML = data[6];
+        stat_s4.innerHTML = data[7];
+
+        stat_b1.style.width = data[4];
+        stat_b2.style.width = data[5];
+        stat_b3.style.width = data[6];
+        stat_b4.style.width = data[7];
+
+        stat_b1.className = data[8]
+        stat_b2.className = data[9]
+        stat_b3.className = data[10]
+        stat_b4.className = data[11]
+
+        print_1.innerHTML = data[12];
+        print_2.innerHTML = data[13];
+        print_3.innerHTML = data[14];
+        print_4.innerHTML = data[15];
+        print_5.innerHTML = data[16];
+
+        sport_1.innerHTML = data[17];
+        sport_2.innerHTML = data[18];
+        sport_3.innerHTML = data[19];
+        sport_4.innerHTML = data[20];
+        sport_5.innerHTML = data[21];
+        sport_6.innerHTML = data[22];
+        sport_7.innerHTML = data[23];
+        sport_8.innerHTML = data[24];
+        sport_9.innerHTML = data[25];
+        sport_10.innerHTML = data[26];
+
+        sport_s1.innerHTML = data[27];
+        sport_s2.innerHTML = data[28];
+        sport_s3.innerHTML = data[29];
+        sport_s4.innerHTML = data[30];
+        sport_s5.innerHTML = data[31];
+        sport_s6.innerHTML = data[32];
+        sport_s7.innerHTML = data[33];
+        sport_s8.innerHTML = data[34];
+        sport_s9.innerHTML = data[35];
+        sport_s10.innerHTML = data[36];
+
+        sport_b1.style.width = data[27];
+        sport_b2.style.width = data[28];
+        sport_b3.style.width = data[29];
+        sport_b4.style.width = data[30];
+        sport_b5.style.width = data[31];
+        sport_b6.style.width = data[32];
+        sport_b7.style.width = data[33];
+        sport_b8.style.width = data[34];
+        sport_b9.style.width = data[35];
+        sport_b10.style.width = data[36];
+
+        sport_b1.className = data[37];
+        sport_b2.className = data[38];
+        sport_b3.className = data[39];
+        sport_b4.className = data[40];
+        sport_b5.className = data[41];
+        sport_b6.className = data[42];
+        sport_b7.className = data[43];
+        sport_b8.className = data[44];
+        sport_b9.className = data[45];
+        sport_b10.className = data[46];
+
+        run_s1.innerHTML = data[47];
+        run_s2.innerHTML = data[48];
+        run_s3.innerHTML = data[49];
+        run_s4.innerHTML = data[50];
+        run_s5.innerHTML = data[51];
+        run_s6.innerHTML = data[52];
+
+        run_b1.style.width = data[47];
+        run_b2.style.width = data[48];
+        run_b3.style.width = data[49];
+        run_b4.style.width = data[50];
+        run_b5.style.width = data[51];
+        run_b6.style.width = data[52];
+
+        run_b1.className = data[53];
+        run_b2.className = data[54];
+        run_b3.className = data[55];
+        run_b4.className = data[56];
+        run_b5.className = data[57];
+        run_b6.className = data[58];
+
+        compet_s1.innerHTML = data[59];
+        compet_s2.innerHTML = data[60];
+        compet_s3.innerHTML = data[61];
+        compet_s4.innerHTML = data[62];
+
+        compet_b1.style.width = data[59];
+        compet_b2.style.width = data[60];
+        compet_b3.style.width = data[61];
+        compet_b4.style.width = data[62];
+
+        compet_b1.className = data[63];
+        compet_b2.className = data[64];
+        compet_b3.className = data[65];
+        compet_b4.className = data[66];
+      
+      })
+      .setAutomatically();
+    }, 1000)
+  })
+ 
+ 
+</script>
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.88.1">
+  <title>Jumbotron example · Bootstrap v5.1</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+  <link href="https://nakagame-webadmin-cdn.pages.dev/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/jumbotron/">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400&family=Niramit:wght@200;300&family=Prompt:wght@100;300;400&family=Roboto:ital,wght@1,100&family=Sarabun:wght@100&display=swap"
+    rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+    body {
+      font-family: 'Chakra Petch', sans-serif;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+      
+       #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.9);
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+
+</head>
+
+<body class="bg-light">
+
+  <main>
+    <div class="container py-4 bg-light">
+      <header class="pb-3 mb-4 border-bottom" id="head">
+        <a class="d-flex align-items-center text-dark text-decoration-none">
+         <span class="fs-4"><b>[เมนู] : บันทึกผลการแข่งขันกีฬา</b></span>
+        </a>
+      </header>
+
+
+      <div class="row align-items-md-stretch bg-light">
+        <div class="col-md-6">
+          <div class="h-100 p-2 text-dark bg-light rounded-3">
+            <h5 class="font-weight-bold">เลือก ID ประเภทกีฬาที่ต้องการบันทึก</h5>
+            <form class="d-flex ms-auto mb-3">
+              <select class="custom-select" id="id" aria-label="Example select with button addon">
+                <option value="">เลือก ID</option>
+                <option value="ID001">ID001</option>
+                <option value="ID002">ID002</option>
+                <option value="ID003">ID003</option>
+                <option value="ID004">ID004</option>
+                <option value="ID005">ID005</option>
+                <option value="ID006">ID006</option>
+                <option value="ID007">ID007</option>
+                <option value="ID008">ID008</option>
+                <option value="ID009">ID009</option>
+                <option value="ID010">ID010</option>
+              </select>
+
+              <button class="btn btn-primary text-white" id="find" type="submit">ค้นหา</button>
+              <button class="btn btn-primary" type="submit" id="bss" disabled style="display:none">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+</button>
+            </form>
+            <div class="container" id="coltb">
+              <table id="tb" class="table table-striped table-responsive nowrap" style="width:100%"></table>
+            </div>
+            <div id="output2"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-2 bg-light border rounded-3">
+            <h3 class="font-weight-bold text-dark">แบบบันทึกผลการแข่งขัน</h3>
+
+            <form id="myForm">
+
+              <div class="row ">
+                <div class="form-group col-md-6 mb-2">
+                  <label>ID</label>
+                  <input type="text" class="form-control" id="input1" required disabled>
+                </div>
+                <div class="form-group col-md-6 mb-2">
+                  <label>ประเภทกีฬา</label>
+                  <input type="text" class="form-control" id="input2" required disabled>
+                </div>
+              </div>
+
+              <!-- คู่ที่ 1 -->
+              <hr/>
+              <h6 class="text-dark font-weight-bold text-center">คู่ที่ 1</h6>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (L)</label>
+                  <select class="custom-select" id="name1_1" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (R)</label>
+                  <select class="custom-select" id="name1_2" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (L)</label>
+                  <input type="number" class="form-control"  id="score1_1" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (R)</label>
+                  <input type="number" class="form-control"  id="score1_2" required>
+                </div>
+              </div>
+
+              <!-- คู่ที่ 2 -->
+              <hr/>
+              <h6 class="text-dark font-weight-bold text-center">คู่ที่ 2</h6>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (L)</label>
+                  <select class="custom-select" id="name2_1" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (R)</label>
+                  <select class="custom-select" id="name2_2" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (L)</label>
+                  <input type="number" class="form-control"  id="score2_1" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (R)</label>
+                  <input type="number" class="form-control"  id="score2_2" required>
+                </div>
+              </div>
+
+              <!-- คู่ที่ 3 -->
+              <hr/>
+              <h6 class="text-dark font-weight-bold text-center">คู่ที่ 3</h6>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (L)</label>
+                  <select class="custom-select" id="name3_1" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                    <option value="คู่ชนะคู่ที่ 1">คู่ชนะคู่ที่ 1</option>
+                    <option value="คู่ชนะคู่ที่ 2">คู่ชนะคู่ที่ 2</option>
+                    <option value="คู่ชนะคู่ที่ 3">คู่ชนะคู่ที่ 3</option>
+
+                    <option value="ผู้ชนะคู่ที่ 1">ผู้ชนะคู่ที่ 1</option>
+                    <option value="ผู้ชนะคู่ที่ 2">ผู้ชนะคู่ที่ 2</option>
+                    <option value="ผู้ชนะคู่ที่ 3">ผู้ชนะคู่ที่ 3</option>
+                    <option value="คู่แพ้คู่ที่ 2">คู่แพ้คู่ที่ 2</option>
+                    <option value="คู่แพ้คู่ที่ 3">คู่แพ้คู่ที่ 3</option>
+                    <option value="ผู้แพ้คู่ที่ 2">ผู้แพ้คู่ที่ 2</option>
+                    <option value="ผู้แพ้คู่ที่ 3">ผู้แพ้คู่ที่ 3</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (R)</label>
+                  <select class="custom-select" id="name3_2" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                    <option value="คู่ชนะคู่ที่ 1">คู่ชนะคู่ที่ 1</option>
+                    <option value="คู่ชนะคู่ที่ 2">คู่ชนะคู่ที่ 2</option>
+                    <option value="คู่ชนะคู่ที่ 3">คู่ชนะคู่ที่ 3</option>
+
+                    <option value="ผู้ชนะคู่ที่ 1">ผู้ชนะคู่ที่ 1</option>
+                    <option value="ผู้ชนะคู่ที่ 2">ผู้ชนะคู่ที่ 2</option>
+                    <option value="ผู้ชนะคู่ที่ 3">ผู้ชนะคู่ที่ 3</option>
+                    <option value="คู่แพ้คู่ที่ 2">คู่แพ้คู่ที่ 2</option>
+                    <option value="คู่แพ้คู่ที่ 3">คู่แพ้คู่ที่ 3</option>
+                    <option value="ผู้แพ้คู่ที่ 2">ผู้แพ้คู่ที่ 2</option>
+                    <option value="ผู้แพ้คู่ที่ 3">ผู้แพ้คู่ที่ 3</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (L)</label>
+                  <input type="number" class="form-control"  id="score3_1" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (R)</label>
+                  <input type="number" class="form-control"  id="score3_2" required>
+                </div>
+              </div>
+
+              <!-- คู่ที่ 4 -->
+              <hr/>
+              <h6 class="text-dark font-weight-bold text-center">คู่ที่ 4</h6>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (L)</label>
+                  <select class="custom-select" id="name4_1" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                    <option value="คู่ชนะคู่ที่ 1">คู่ชนะคู่ที่ 1</option>
+                    <option value="คู่ชนะคู่ที่ 2">คู่ชนะคู่ที่ 2</option>
+                    <option value="คู่ชนะคู่ที่ 3">คู่ชนะคู่ที่ 3</option>
+
+                    <option value="ผู้ชนะคู่ที่ 1">ผู้ชนะคู่ที่ 1</option>
+                    <option value="ผู้ชนะคู่ที่ 2">ผู้ชนะคู่ที่ 2</option>
+                    <option value="ผู้ชนะคู่ที่ 3">ผู้ชนะคู่ที่ 3</option>
+                    <option value="คู่แพ้คู่ที่ 2">คู่แพ้คู่ที่ 2</option>
+                    <option value="คู่แพ้คู่ที่ 3">คู่แพ้คู่ที่ 3</option>
+                    <option value="ผู้แพ้คู่ที่ 2">ผู้แพ้คู่ที่ 2</option>
+                    <option value="ผู้แพ้คู่ที่ 3">ผู้แพ้คู่ที่ 3</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (R)</label>
+                  <select class="custom-select" id="name4_2" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                    <option value="คู่ชนะคู่ที่ 1">คู่ชนะคู่ที่ 1</option>
+                    <option value="คู่ชนะคู่ที่ 2">คู่ชนะคู่ที่ 2</option>
+                    <option value="คู่ชนะคู่ที่ 3">คู่ชนะคู่ที่ 3</option>
+
+                    <option value="ผู้ชนะคู่ที่ 1">ผู้ชนะคู่ที่ 1</option>
+                    <option value="ผู้ชนะคู่ที่ 2">ผู้ชนะคู่ที่ 2</option>
+                    <option value="ผู้ชนะคู่ที่ 3">ผู้ชนะคู่ที่ 3</option>
+                    <option value="คู่แพ้คู่ที่ 2">คู่แพ้คู่ที่ 2</option>
+                    <option value="คู่แพ้คู่ที่ 3">คู่แพ้คู่ที่ 3</option>
+                    <option value="ผู้แพ้คู่ที่ 2">ผู้แพ้คู่ที่ 2</option>
+                    <option value="ผู้แพ้คู่ที่ 3">ผู้แพ้คู่ที่ 3</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (L)</label>
+                  <input type="number" class="form-control"  id="score4_1" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (R)</label>
+                  <input type="number" class="form-control"  id="score4_2" required>
+                </div>
+              </div>
+
+              <!-- คู่ที่ 5 -->
+              <hr/>
+              <h6 class="text-dark font-weight-bold text-center">คู่ที่ 5</h6>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (L)</label>
+                  <select class="custom-select" id="name5_1" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                    <option value="คู่ชนะคู่ที่ 1">คู่ชนะคู่ที่ 1</option>
+                    <option value="คู่ชนะคู่ที่ 2">คู่ชนะคู่ที่ 2</option>
+                    <option value="คู่ชนะคู่ที่ 3">คู่ชนะคู่ที่ 3</option>
+
+                    <option value="ผู้ชนะคู่ที่ 1">ผู้ชนะคู่ที่ 1</option>
+                    <option value="ผู้ชนะคู่ที่ 2">ผู้ชนะคู่ที่ 2</option>
+                    <option value="ผู้ชนะคู่ที่ 3">ผู้ชนะคู่ที่ 3</option>
+                    <option value="คู่แพ้คู่ที่ 2">คู่แพ้คู่ที่ 2</option>
+                    <option value="คู่แพ้คู่ที่ 3">คู่แพ้คู่ที่ 3</option>
+                    <option value="ผู้แพ้คู่ที่ 2">ผู้แพ้คู่ที่ 2</option>
+                    <option value="ผู้แพ้คู่ที่ 3">ผู้แพ้คู่ที่ 3</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>ชื่อคณะ (R)</label>
+                  <select class="custom-select" id="name5_2" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                    <option value="คู่ชนะคู่ที่ 1">คู่ชนะคู่ที่ 1</option>
+                    <option value="คู่ชนะคู่ที่ 2">คู่ชนะคู่ที่ 2</option>
+                    <option value="คู่ชนะคู่ที่ 3">คู่ชนะคู่ที่ 3</option>
+
+                    <option value="ผู้ชนะคู่ที่ 1">ผู้ชนะคู่ที่ 1</option>
+                    <option value="ผู้ชนะคู่ที่ 2">ผู้ชนะคู่ที่ 2</option>
+                    <option value="ผู้ชนะคู่ที่ 3">ผู้ชนะคู่ที่ 3</option>
+                    <option value="คู่แพ้คู่ที่ 2">คู่แพ้คู่ที่ 2</option>
+                    <option value="คู่แพ้คู่ที่ 3">คู่แพ้คู่ที่ 3</option>
+                    <option value="ผู้แพ้คู่ที่ 2">ผู้แพ้คู่ที่ 2</option>
+                    <option value="ผู้แพ้คู่ที่ 3">ผู้แพ้คู่ที่ 3</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (L)</label>
+                  <input type="number" class="form-control"  id="score5_1" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>คะแนน (R)</label>
+                  <input type="number" class="form-control"  id="score5_2" required>
+                </div>
+              </div>
+
+              <!-- คู่ที่ 5 -->
+              <hr/>
+              <h6 class="text-dark font-weight-bold text-center">สถานะการแข่งขัน</h6>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>สถานะการแข่งขัน</label>
+                  <select class="custom-select" id="status" aria-label="Example select with button addon" required>
+                    <option value="สถานะ">เลือกสถานะการแข่งขัน</option>
+                    <option value="ยังแข่งขันไม่เสร็จ">ยังแข่งขันไม่เสร็จ</option>
+                    <option value="แข่งขันเสร็จแล้ว">แข่งขันเสร็จแล้ว</option>
+                    <option value="อยู่ระหว่างการแข่งขัน">อยู่ระหว่างการแข่งขัน</option>
+                    <option value="รอผลการแข่งขัน">รอผลการแข่งขัน</option>
+                  </select>
+                </div>
+              </div><br/>
+
+             
+              <button type="submit" class="btn btn-dark" id="add"><i class="fas fa-user-cog"></i> เพิ่มข้อมูล</button>
+              <button class="btn btn-dark" type="submit" id="btnadd" disabled style="display:none">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+ รอสักครู่...
+</button>
+              <button id="update" class="btn btn-success " style="display:none" ><i class="fas fa-edit"></i> แก้ไข</button>
+              <button class="btn btn-success" type="button" id="btnupdate" disabled style="display:none">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+ แก้ไข..
+</button>
+              <button id="del" class="btn btn-danger " style="display:none" ><i class="fas fa-trash-alt"></i> ลบข้อมูล</button>
+              <div id="output" class="mt-2"></div>
+            </form>
+
+        <div class="col text-center mt-3"><button type="button" class="btn btn-outline-secondary" onclick="reset()" id="reset" style="display:none"><i class="fas fa-redo-alt"></i> Reset</button></div>
+          </div> 
+          </div>
+      </div>
+      
+      
+    </div>
+  </main>
+  <script>
+    document.getElementById('add').addEventListener('click',add)
+      document.getElementById('find').addEventListener('click',find)   
+      document.getElementById('update').addEventListener('click',update)   
+      document.getElementById('del').addEventListener('click',del)   
+
+      //คำสั่งเพิ่มข้อมูล
+      function add(){
+        event.preventDefault()
+       $('#btnadd').show()
+       $('#add').hide()
+        if(document.getElementById('input1').value == "" 
+        || document.getElementById('input2').value == "" 
+        || document.getElementById('input3').value == "" 
+        || document.getElementById('input4').value == "" 
+        || document.getElementById('input5').value == "" 
+        || document.getElementById('input6').value == ""){
+           document.getElementById("output").innerHTML = "<div class='alert alert-danger' role='alert'>กรุณากรอกให้ครบ!</div>";
+          setTimeout(function(){
+          document.getElementById('output').innerHTML= ""; }, 1500);  
+         $('#btnadd').hide()
+         $('#add').show()
+           }else{
+      var obj = {}
+       obj.input1 = document.getElementById('input1').value 
+       obj.input2 = document.getElementById('input2').value 
+       obj.input3 = document.getElementById('input3').value
+       obj.input4 = document.getElementById('input4').value
+       obj.input5 = document.getElementById('input5').value
+       obj.input6 = document.getElementById('input6').value             
+       google.script.run.withSuccessHandler(addSuccess).addRecord(obj)
+        }  
+      }
+      function addSuccess(output){
+       if(output.result == true){
+          document.getElementById('myForm').reset() 
+          document.getElementById("output").innerHTML = "<div class='alert alert-primary' role='alert'>บันทึกข้อมูลสำเร็จ</div>";
+           $('#btnadd').hide()
+           $('#add').show()
+           $('#coltb').show()
+             setTimeout(function(){
+            document.getElementById('output').innerHTML= ""; }, 2000);  
+            google.script.run.withSuccessHandler(showData).getData();
+          //แสดงตาราง
+        var div =  document.createElement('div')
+            div.setAttribute('id','tb')
+            document.body.appendChild(div)
+            document.getElementById('tb').innerHTML = 
+           `<tr>                              
+            <th scope='col'>ID</th>
+            <td scope='col'>${output.data[0]}</td>
+            </tr>
+            <tr>
+            <th scope='col'>ชื่อ สกุล</th>            
+            <td scope='col'>${output.data[1]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>ชื่อเล่น</th>
+            <td scope='col'>${output.data[2]}</td>
+            <tr>  
+            <th scope='col'>Email</th>            
+            <td scope='col'>${output.data[3]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>เบอร์โทร</th>
+            <td scope='col'>${output.data[4]}</td>
+            </tr> 
+            <tr> 
+            <th scope='col'>ที่อยู่</th>            
+            <td scope='col'>${output.data[5]}</td>           
+            </tr> `
+            
+       }else{
+          document.getElementById("output").innerHTML = "<div class='alert alert-danger' role='alert'>เพิ่มข้อมูลไม่สำเร็จ ไอดีซ้ำ</div>";
+           $('#btnadd').hide()
+           $('#add').show()
+            setTimeout(function(){
+            document.getElementById('output').innerHTML= "";}, 2000);  
+       }
+      }
+
+      //คำสั่งค้นหาข้อมูลเพื่อแก้ไข ลบ
+      function find(){
+        event.preventDefault()
+        $('#bss').show()
+        $('#find').hide()
+        $('#coltb').hide()
+        var record = document.getElementById('id').value
+        google.script.run.withSuccessHandler(findSuccess).findRecord(record)
+      }
+
+     function findSuccess(output){
+       if(output.result == true){
+       document.getElementById('input1').value = output.data[0]
+       document.getElementById('input2').value = output.data[1]
+
+       document.getElementById('name1_1').value = output.data[2]
+       document.getElementById('name1_2').value = output.data[3]
+       document.getElementById('score1_1').value = output.data[4]
+       document.getElementById('score1_2').value = output.data[5]
+
+       document.getElementById('name2_1').value = output.data[6]
+       document.getElementById('name2_2').value = output.data[7]
+       document.getElementById('score2_1').value = output.data[8]
+       document.getElementById('score2_2').value = output.data[9]
+
+       document.getElementById('name3_1').value = output.data[10]
+       document.getElementById('name3_2').value = output.data[11]
+       document.getElementById('score3_1').value = output.data[12]
+       document.getElementById('score3_2').value = output.data[13]
+
+       document.getElementById('name4_1').value = output.data[14]
+       document.getElementById('name4_2').value = output.data[15]
+       document.getElementById('score4_1').value = output.data[16]
+       document.getElementById('score4_2').value = output.data[17]
+
+       document.getElementById('name5_1').value = output.data[18]
+       document.getElementById('name5_2').value = output.data[19]
+       document.getElementById('score5_1').value = output.data[20]
+       document.getElementById('score5_2').value = output.data[21]
+
+       document.getElementById('status').value = output.data[22]
+
+
+       document.getElementById('id').value = '' 
+       document.getElementById('input1').disabled = true
+       document.getElementById('input2').disabled = true
+       document.getElementById('add').style.visibility = 'hidden'
+          $('#bss').hide()
+          $('#find').show()
+          $('#update').show()
+          $('#del').hide()
+          $('#coltb').show()
+          $('#reset').show()
+
+       //แสดงตาราง
+         var div =  document.createElement('div')
+           div.setAttribute('id','tb')
+            document.body.appendChild(div)
+            document.getElementById('tb').innerHTML =  
+           `<tr>                              
+            <th scope='col'>ID</th>
+            <td scope='col'>${output.data[0]}</td>
+            <th scope='col'>ประเภทกีฬา</th>            
+            <td scope='col'>${output.data[1]}</td>
+            </tr>
+           
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[2]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[3]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[4]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[5]}</td>
+            </tr>    
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[6]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[7]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[8]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[9]}</td>
+            </tr>  
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[10]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[11]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[12]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[13]}</td>
+            </tr>  
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[14]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[15]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[16]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[17]}</td>
+            </tr>  
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[18]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[19]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[20]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[21]}</td>
+            </tr>  
+
+
+            <tr> 
+            <th scope='col'>สถานะการแข่ง</th>            
+            <td scope='col'>${output.data[22]}</td>           
+            </tr> `
+
+       }else{
+          $('#bss').hide()
+          $('#find').show()
+          $('#coltb').hide()
+       document.getElementById("output2").innerHTML = "<div class='alert alert-danger' role='alert'>ไม่พบข้อมูล</div>";
+            setTimeout(function(){
+         document.getElementById('output2').innerHTML= ""; }, 2000); 
+          }
+       }
+
+      //คำสั่งแก้ไข
+      function update(){
+        event.preventDefault()
+         $('#btnupdate').show()
+         $('#update').hide()
+        var obj = {}
+        obj.input1 = document.getElementById('input1').value 
+        obj.input2 = document.getElementById('input2').value 
+
+        obj.name1_1 = document.getElementById('name1_1').value
+        obj.name1_2 = document.getElementById('name1_2').value 
+        obj.score1_1 = document.getElementById('score1_1').value 
+        obj.score1_2 = document.getElementById('score1_2').value 
+
+        obj.name2_1 = document.getElementById('name2_1').value
+        obj.name2_2 = document.getElementById('name2_2').value 
+        obj.score2_1 = document.getElementById('score2_1').value 
+        obj.score2_2 = document.getElementById('score2_2').value 
+
+        obj.name3_1 = document.getElementById('name3_1').value
+        obj.name3_2 = document.getElementById('name3_2').value 
+        obj.score3_1 = document.getElementById('score3_1').value 
+        obj.score3_2 = document.getElementById('score3_2').value 
+
+        obj.name4_1 = document.getElementById('name4_1').value
+        obj.name4_2 = document.getElementById('name4_2').value 
+        obj.score4_1 = document.getElementById('score4_1').value 
+        obj.score4_2 = document.getElementById('score4_2').value 
+
+        obj.name5_1 = document.getElementById('name5_1').value
+        obj.name5_2 = document.getElementById('name5_2').value 
+        obj.score5_1 = document.getElementById('score5_1').value 
+        obj.score5_2 = document.getElementById('score5_2').value 
+
+        obj.status = document.getElementById('status').value 
+        
+
+
+        google.script.run.withSuccessHandler(updateSuccess).updateRecord(obj)
+      }
+      function updateSuccess(data){
+          document.getElementById('myForm').reset() 
+          document.getElementById("output").innerHTML = "<div class='alert alert-success' role='alert'>บันทึกข้อมูลเรียบร้อยแล้ว</div>";
+          $('#update').hide()
+          $('#btnupdate').hide()
+          $('#del').hide()
+            setTimeout(function(){
+          document.getElementById('output').innerHTML= ""; }, 2000);  
+          document.getElementById('id').value = '' 
+          document.getElementById('input1').disabled = false
+          document.getElementById('add').style.visibility = 'visible'
+          google.script.run.withSuccessHandler(showData).getData();
+         
+          //แสดงตาราง
+            var div =  document.createElement('div')
+            div.setAttribute('id','tb')
+            document.body.appendChild(div)
+            document.getElementById('tb').innerHTML =           
+            `<tr>                              
+            <th scope='col'>ID</th>
+            <td scope='col'>${output.data[0]}</td>
+            <th scope='col'>ประเภทกีฬา</th>            
+            <td scope='col'>${output.data[1]}</td>
+            </tr>
+           
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[2]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[3]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[4]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[5]}</td>
+            </tr>    
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[6]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[7]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[8]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[9]}</td>
+            </tr>  
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[10]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[11]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[12]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[13]}</td>
+            </tr>  
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[14]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[15]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[16]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[17]}</td>
+            </tr>  
+
+            <tr>                              
+            <th scope='col'>ชื่อคณะ (L)</th>
+            <td scope='col'>${output.data[18]}</td>
+            <th scope='col'>ชื่อคณะ (R)</th>
+            <td scope='col'>${output.data[19]}</td>
+            </tr>
+            <tr>                              
+            <th scope='col'>คะแนน (L)</th>
+            <td scope='col'>${output.data[20]}</td>
+            <th scope='col'>คะแนน (R)</th>
+            <td scope='col'>${output.data[21]}</td>
+            </tr>  
+
+
+            <tr> 
+            <th scope='col'>สถานะการแข่ง</th>            
+            <td scope='col'>${output.data[22]}</td>           
+            </tr> `
+          }
+
+           //คำสั่งลบ    
+        function del(){
+           event.preventDefault()
+        var record =  document.getElementById('input1').value
+        Swal.fire({
+            position : 'top',
+            title: 'คุณแน่ใจว่าจะลบ?',
+            text: "ข้อมูลจะไม่สามารถกู้คืนได้!",
+            icon: 'warning',
+            showClass: {
+            popup: 'animate__animated animate__fadeInDown'},
+            hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'},
+            showCancelButton: true,
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonColor: '#0033FF',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ตกลง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'เรียบร้อย!',
+                'ข้อมูลถูกลบเรียบร้อย.',
+                'success'
+              )
+              // google.script.run.withSuccessHandler(delSuccess).delRecord(record)
+            }
+          })
+      }
+
+      function delSuccess(){
+        document.getElementById('myForm').reset() 
+        document.getElementById("output2").innerHTML = "<div class='alert alert-danger' role='alert'>ลบข้อมูลเรียบร้อยแล้ว</div>";
+        setTimeout(function(){
+        document.getElementById('output2').innerHTML= ""; }, 2000);  
+        document.getElementById('id').value = ''
+        document.getElementById('input1').disabled = false
+        document.getElementById('add').style.visibility = 'visible'
+          $('#update').hide()
+          $('#del').hide()
+          $('#btndel').hide()
+          $('#coltb').hide()
+        google.script.run.withSuccessHandler(showData).getData();
+    
+      }
+
+        function contact(){
+          Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'ผู้พัฒนา',
+          html: '<a href="https://examblog64.blogspot.com/" target="_blank">examblog64.blogspot.com</a>',
+          showConfirmButton: true,
+          confirmButtonColor: '#000',
+          //timer: 1500
+        })
+        }
+
+        function reset(){
+          document.getElementById('myForm').reset() 
+          document.getElementById('add').style.visibility = 'visible'
+          document.getElementById('input1').disabled = false
+          $('#update').hide()
+          $('#del').hide()
+          $('#reset').hide()
+          $('#coltb').hide()
+        }
+
+       function backtop(){
+        $([document.documentElement, document.body]).animate({ scrollTop: $('#head').offset().top
+          },1)
+        }
+  </script>
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>

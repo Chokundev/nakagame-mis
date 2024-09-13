@@ -1,0 +1,90 @@
+<!-- 
+    <div class="container center-align">
+        <br /><br /><h1>เว็บแอประบบลงชื่อเข้าใช้งาน</h1><br />
+        <div id="firebaseui-auth-container"></div>
+        <div class="row">
+            <div class="col s12 m3 offset-m4">
+                <pre id="account-details" class="left-align"></pre>
+            </div>
+        </div>
+        <button style="display: none" id="signOut" class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button" data-provider-id="google.com" data-upgraded=",MaterialButton">
+            <span class="firebaseui-idp-icon-wrapper"><img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"></span>
+            <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign out (ออกจากระบบ)</span>
+        </button>
+         -->
+        
+ 
+         <!doctype html>
+         <html lang="en">
+         
+         <head>
+           <meta charset="utf-8">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
+           <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+           <link rel="stylesheet"
+           href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css"
+           rel="stylesheet">
+         </head>
+         
+         <body>
+           <style>
+             @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+         
+             *{
+               font-family: 'Chakra Petch', sans-serif;
+             }
+           </style>
+         
+         
+           <body class="bg-white rounded-lg py-5">
+             <div class="container flex flex-col mx-auto bg-white rounded-lg pt-12 my-5">
+               <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
+                 <div class="flex items-center justify-center w-full lg:p-12">
+                   <div class="flex items-center xl:p-10">
+                     <form class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+                       <center><img src="https://medalrank-nakagame42.pages.dev/Nakagame.svg" alt="" width="120px"></center><br>
+                       
+                       <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">NAKAGAME-MIS</h3>
+                       <p class="mb-4 text-grey-700">ระบบบริหารจัดการฐานข้อมูล ผลการแข่งขันกีฬาระหว่างคณะ นาคาเกมส์</p> <br/>
+                       <p class="text-sm leading-relaxed text-grey-900">โปรดเข้าสู่ระบบด้วยบัญชี Google ของท่าน เพื่อเข้าใช้งานระบบ</p><br/>
+                       <a
+                         class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300" id="googleSignIn"  onclick="googleSignIn()">
+                         <img class="h-5 mr-2"
+                           src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png"
+                           alt="">
+                         เข้าสู่ระบบด้วยบัญชี Google
+                       </a> <br/>
+                       <p class="text-sm leading-relaxed text-grey-900">⚠️สำหรับผู้ดูแลระบบ กรรมการ และฝ่ายจัดการแข่งขันเท่านั้น⚠️
+                         <br> หากเข้าสู่ระบบไม่ได้ โปรดติดต่อผู้ดูแลระบบ <a href="mailto:teerachanon6644@gmail.com">ที่นี่</a>
+                       </p>
+                       <br/>
+                       
+                       <!-- <div class="flex items-center mb-3">
+                         <hr class="h-0 border-b border-solid border-grey-500 grow">
+                         <p class="mx-4 text-grey-600">หรือ</p>
+                         <hr class="h-0 border-b border-solid border-grey-500 grow">
+                       </div>
+                       <label for="email" class="mb-2 text-sm text-start text-grey-900">อีเมล์*</label>
+                       <input id="email" type="email" placeholder="Enter an username"
+                         class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl" disabled />
+                       <label for="password" class="mb-2 text-sm text-start text-grey-900">รหัสผ่าน*</label>
+                       <input id="password" type="password" placeholder="Enter a password"
+                         class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl" disabled />
+                       <br>
+                       <center>
+                         <button class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500" disabled>
+                           เข้าสู่ระบบ
+                         </button>
+                       </center> -->
+                       
+                       <p class="text-sm leading-relaxed text-grey-900">2024 © พัฒนาระบบโดย : ธีรชานนท์ พวงเงิน</p>
+                     </form>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </body>
+         </body>
+         
+         </html>

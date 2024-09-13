@@ -1,0 +1,40 @@
+<!-- ## The html code of the form goes here -->
+<!-- ## This is included in the Index.html page using "include('Form')" function -->
+
+<form id="myForm" class="p-2 border border-light rounded bg-light" onsubmit="handleFormSubmit(this)"> <!-- Call JavaScript function "handleFormSubmit" -->
+    <p class="h4 mb-4 text-center font-weight-bold text-dark"><i class="fa-solid fa-user-pen"></i> แบบฟอร์มบันทึกผลคะแนนการประกวด</p>
+    <center id="message"></center>
+    <input type="text" id="RecId" name="RecId" value="" style="display: none">
+
+	
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="name"> ประเภทการประกวด</label>
+          <input type="name" class="form-control" id="name" name="name" placeholder="" required disabled>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="no1"> ● คะแนนคณะวชิรญาณวงศ์</label>
+          <input type="number" class="form-control" id="no1" name="no1" placeholder="วชิรญาณวงศ์" required>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="no2"> ● คะแนนคณะดำรงธรรมี</label>
+          <input type="number" class="form-control" id="no2" name="no2" placeholder="ดำรงธรรมี" required>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="no3"> ● คะแนนคณะรังษีสังวร</label>
+          <input type="number" class="form-control" id="no3" name="no3" placeholder="รังษีสังวร" required>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="no4"> ● คะแนนคณะบวรนาคินทร์</label>
+          <input type="number" class="form-control" id="no4" name="no4" placeholder="บวรนาคินทร์" required>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="no5"> ● คะแนนคณะอรพินทุ์พิสุทธ์</label>
+          <input type="number" class="form-control" id="no5" name="no5" placeholder="อรพินทุ์พิสุทธ์" required>
+      </div>
+    </div>
+	<button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> บันทึก</button>
+    <button class="btn btn-warning" type="reset" value="ล้างค่า"><i class="fa-solid fa-rotate-right"></i> ล้างค่า</button>
+</form>

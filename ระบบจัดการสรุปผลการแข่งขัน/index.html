@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <link href="https://nakagame-webadmin-cdn.pages.dev/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
+    <link href="https://nakagame-webadmin-cdn.pages.dev/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+</head>
+
+<body>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+  </style>
+
+
+
+    <main class="bg-light">
+    <div class="container py-4">
+      <header class="pb-3 mb-4 border-bottom" id="head">
+        <a class="d-flex align-items-center text-dark text-decoration-none">
+         <span class="fs-4"><b>[เมนู] : บันทึกสรุปผลการแข่งขันกีฬา</b></span>
+        </a>
+      </header>
+
+      <div class="p-2 mb-2 bg-light rounded-3">
+      </div>
+
+      <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+          <div class="h-100 p-2 text-dark bg-light rounded-3">
+            <h5 class="font-weight-bold">เลือก ID ประเภทกีฬาที่ต้องการบันทึก</h5>
+            <form class="d-flex ms-auto mb-3">
+              <select class="custom-select" id="id" aria-label="Example select with button addon">
+                <option value="">เลือก ID</option>
+                <option value="ID001">ID001</option>
+                <option value="ID002">ID002</option>
+                <option value="ID003">ID003</option>
+                <option value="ID004">ID004</option>
+                <option value="ID005">ID005</option>
+                <option value="ID006">ID006</option>
+                <option value="ID007">ID007</option>
+                <option value="ID008">ID008</option>
+                <option value="ID009">ID009</option>
+                <option value="ID010">ID010</option>
+              </select>
+              <button class="btn btn-primary text-white" id="find" type="submit">ค้นหา</button>
+              <button class="btn btn-dark" type="submit" id="bss" disabled style="display:none">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+</button>
+            </form>
+            <div class="container" id="coltb">
+              <table id="tb" class="table table-striped table-responsive nowrap" style="width:100%"></table>
+            </div>
+            <div id="output2"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-2 bg-light border rounded-3">
+            <h3 class="font-weight-bold text-dark">แบบบันทึกสรุปผลการแข่งขัน</h3>
+
+            <form id="myForm">
+              <div class="row ">
+                <div class="form-group col-md-6 mb-2">
+                  <label>ID</label>
+                  <input type="text" class="form-control" id="input1" required>
+                </div>
+                <div class="form-group col-md-6 mb-2">
+                  <label>ประเภทกีฬา</label>
+                  <input type="text" class="form-control" id="input2" required>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-6 mb-2">
+                  <label>อันดับที่ 1</label>
+                  <select class="custom-select" id="input3" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label>อันดับที่ 2</label>
+                  <select class="custom-select" id="input4" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-6 mb-3">
+                  <label>อันดับที่ 3</label>
+                  <select class="custom-select" id="input5" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>อันดับที่ 4</label>
+                  <select class="custom-select" id="input6" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>อันดับที่ 5</label>
+                  <select class="custom-select" id="input7" aria-label="Example select with button addon" required>
+                    <option value="คณะ">เลือกคณะ</option>
+                    <option value="วชิรญาณวงศ์">วชิรญาณวงศ์</option>
+                    <option value="ดำรงธรรมี">ดำรงธรรมี</option>
+                    <option value="รังษีสังวร">รังษีสังวร</option>
+                    <option value="บวรนาคินทร์">บวรนาคินทร์</option>
+                    <option value="อรพินทุ์พิสุทธ์">อรพินทุ์พิสุทธ์</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-dark" id="add" disabled><i class="fas fa-user-cog"></i> เพิ่มข้อมูล</button>
+              <button class="btn btn-dark" type="submit" id="btnadd" disabled style="display:none">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+ รอสักครู่...
+</button>
+              <button id="update" class="btn btn-success " style="display:none" ><i class="fas fa-edit"></i> แก้ไข</button>
+              <button class="btn btn-success" type="button" id="btnupdate" disabled style="display:none">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+ แก้ไข..
+</button>
+              <button id="del" class="btn btn-danger " style="display:none" ><i class="fas fa-trash-alt"></i> ลบข้อมูล</button>
+              <div id="output" class="mt-2"></div>
+            </form>
+        <div class="col text-center mt-3"><button type="button" class="btn btn-outline-secondary" onclick="reset()" id="reset" style="display:none"><i class="fas fa-redo-alt"></i> Reset</button></div>
+          </div> 
+          </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+    <!-- Boostrap -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://nakagame-webadmin-cdn.pages.dev/vendor/jquery/jquery.min.js"></script>
+    <script src="https://nakagame-webadmin-cdn.pages.dev/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://nakagame-webadmin-cdn.pages.dev/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="https://nakagame-webadmin-cdn.pages.dev/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="https://nakagame-webadmin-cdn.pages.dev/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="https://nakagame-webadmin-cdn.pages.dev/js/demo/chart-area-demo.js"></script>
+    <script src="https://nakagame-webadmin-cdn.pages.dev/js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+    <!-- SweetAlret -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?!= include ('js') ?>
+    <?!= include ('recordjs') ?>
+    <!-- <?!= include ('sportjs') ?> -->
+</body>
+</html>
